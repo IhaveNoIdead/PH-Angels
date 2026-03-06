@@ -1,44 +1,29 @@
 <?php
 $pageNumber = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
-$productsPerPage = isset($_GET['productsPerPage']) ? max(1, (int) $_GET['productsPerPage']) : 10;
+$ordersPerPage = isset($_GET['ordersPerPage']) ? max(1, (int) $_GET['ordersPerPage']) : 10;
 
-$dataToUse = $products ?? [];
+$dataToUse = $orders ?? [];
 $total = count($dataToUse);
-$totalPages = (int) max(1, ceil($total / $productsPerPage));
+$totalPages = (int) max(1, ceil($total / $ordersPerPage));
 
 if ($pageNumber > $totalPages) {
     $pageNumber = $totalPages;
 }
 
-$start = ($pageNumber - 1) * $productsPerPage;
-$pageProducts = array_slice($dataToUse, $start, $productsPerPage);
+$start = ($pageNumber - 1) * $ordersPerPage;
+$pageOrders = array_slice($dataToUse, $start, $ordersPerPage);
 
 function querySetter(array $overrides = [])
 {
     $query = array_merge($_GET, $overrides);
     return http_build_query($query);
 }
-
-$update_id = isset($_GET['update_id']) ? (int) $_GET['update_id'] : null;
-$editing = $update_id !== null;
-
-$productToEdit = null;
-if ($editing) {
-    foreach ($products as $p) {
-        if ($p->id == $update_id) {
-            $productToEdit = $p;
-            break;
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
 <html>
 
-<?= view('components/head', [
-    'title' => 'Philippines Angels'
-]) ?>
+<?= view('components/head', ['title' => 'Philippines Angels']) ?>
 
 <body class="color-espresso">
 
@@ -50,84 +35,19 @@ if ($editing) {
 
 <?= view('components/sidebar/adminSidebar', ['active' => 'orderPage']) ?>
 
-<section class="shadow mx-8 my-8 p-6 rounded-xl color-light-dark">
-
-<!-- ADD PRODUCT FORM -->
-
-<form method="post" action="/admin/menuPage" enctype="multipart/form-data" class="space-y-3 mb-8">
-
-<?php if ($editing): ?>
-<input type="hidden" name="update" value="<?= esc($productToEdit->id) ?>">
-<?php endif; ?>
-
-<div class="flex sm:flex-row flex-col gap-3">
-
-<input
-type="text"
-name="product_name"
-placeholder="Product Name"
-value="<?= esc(old('product_name', $productToEdit->product_name ?? '')) ?>"
-class="px-3 py-2 rounded-md w-full sm:w-1/3 color-soft-white text-black "
-required>
-
-<input
-type="number"
-step="0.01"
-name="price"
-placeholder="Price"
-value="<?= esc(old('price', $productToEdit->price ?? '')) ?>"
-class="px-3 py-2 rounded-md w-full sm:w-1/3 color-soft-white text-black "
-required>
-
-<input
-type="text"
-name="product_description"
-placeholder="Description"
-value="<?= esc(old('product_description', $productToEdit->product_description ?? '')) ?>"
-class="px-3 py-2 rounded-md w-full sm:w-1/3 color-soft-white text-black"
-required>
-
-<input
-type="text"
-name="type"
-placeholder="Helicopter"
-value="<?= esc(old('type', $productToEdit->type ?? '')) ?>"
-class="px-3 py-2 rounded-md w-full sm:w-1/4 color-soft-white text-black "
-required>
-
-<input
-type="file"
-name="product_image"
-accept="image/*"
-class="px-3 py-2 rounded-md w-full sm:w-1/4 color-gold cursor-pointer text-sm text-color-soft-white"
-required>
-
-<button
-type="submit"
-class="px-4 py-2 rounded-md color-midnight-black text-white hover-secondary text-soft-white cursor-pointer shadow-sm">
-<?= $editing ? 'Update Product' : 'Add Product' ?>
-</button>
-
-</div>
-</form>
-
-<!-- </?= view('components/control_panels/filter_search_sort/adminOrders') ?> -->
-
-<!-- PRODUCTS TABLE -->
-<div class="shadow rounded-lg overflow-x-auto">
+<section class="shadow w-full my-8 p-6 rounded-xl color-light-dark">
 
 <div class="shadow rounded-lg overflow-x-auto">
 
-<table class="min-w-full text-left text-sm ">
+<table class="min-w-full text-left text-sm">
 
 <thead class="color-base-dark text-color-soft-white">
 
 <tr>
-<th class="px-6 py-3">ID</th>
-<th class="px-6 py-3">Name</th>
-<th class="px-6 py-3">Price</th>
-<th class="px-6 py-3">Description</th>
-<th class="px-6 py-3">Image</th>
+<th class="px-6 py-3">Account No.</th>
+<th class="px-6 py-3">Order No.</th>
+<th class="px-6 py-3">Order Info</th>
+<th class="px-6 py-3">Date Ordered</th>
 <th class="px-6 py-3 text-center">Action</th>
 </tr>
 
@@ -135,63 +55,70 @@ class="px-4 py-2 rounded-md color-midnight-black text-white hover-secondary text
 
 <tbody class="divide-y color-soft-white text-black">
 
-<?php if (!empty($pageProducts)): ?>
+<?php if (!empty($pageOrders)): ?>
 
-<?php foreach ($pageProducts as $product): ?>
+<?php foreach ($pageOrders as $order): ?>
 
 <tr>
 
-<td class="px-6 py-4"><?= esc($product->id) ?></td>
+<td class="px-6 py-4">
+<?= esc($order->user_id) ?>
+</td>
 
-<td class="px-6 py-4"><?= esc($product->product_name) ?></td>
-
-<td class="px-6 py-4">₱<?= esc($product->price) ?></td>
-
-<td class="px-6 py-4"><?= esc($product->product_description) ?></td>
+<td class="px-6 py-4">
+<?= esc($order->id) ?>
+</td>
 
 <td class="px-6 py-4">
 
-<?php if (!empty($product->product_image)): ?>
+<div>Total: ₱<?= esc($order->total_amount) ?></div>
 
-<img src="/assets/uploads/images/products/<?= esc($product->product_image) ?>"
-class="rounded w-16 h-16 object-cover">
+<div class="text-xs text-gray-600">
+Pickup: <?= esc($order->pickup_location) ?>
+</div>
 
-<?php else: ?>
+<div class="text-xs text-gray-600">
+<?= esc($order->pickup_date) ?> <?= esc($order->pickup_time) ?>
+</div>
 
-<span class="text-gray-400 italic">No image</span>
+</td>
 
-<?php endif; ?>
-
+<td class="px-6 py-4">
+<?= esc($order->created_at) ?>
 </td>
 
 <td class="px-6 py-4 text-center">
 
-<form method="get" action="/admin/menuPage" class="my-2">
+<form method="post" action="/admin/orderPage" class="inline">
 
 <button
 type="submit"
-name="update_id"
-value="<?= esc($product->id) ?>"
-class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-md text-white">
+name="delete"
+value="<?= esc($order->id) ?>"
+class="bg-black hover:bg-gold-700 px-3 py-1 rounded-md text-white cursor-pointer">
 
-Edit
+Complete
 
 </button>
 
 </form>
 
-<form method="post"
-action="/admin/menuPage"
-class="my-2"
-onsubmit="return confirm('Delete this product?');">
+<form
+method="post"
+action="/admin/orderPage"
+class="inline"
+onsubmit="return confirm('Cancel this order?');">
 
 <button
 type="submit"
 name="delete"
-value="<?= esc($product->id) ?>"
-class="px-3 py-1 border rounded">
-Delete
+value="<?= esc($order->id) ?>"
+class="bg-white-600 hover:bg-white-700 px-3 py-1 rounded-md text-black cursor-pointer border border-gray-400">
+
+Cancel
+
 </button>
+
 </form>
 
 </td>
@@ -203,13 +130,9 @@ Delete
 <?php else: ?>
 
 <tr>
-
-<td colspan="6" class="py-6 text-gray-400 text-center">
-
-No products available
-
+<td colspan="5" class="py-6 text-gray-400 text-center">
+No orders available
 </td>
-
 </tr>
 
 <?php endif; ?>
@@ -217,7 +140,6 @@ No products available
 </tbody>
 
 </table>
-
 
 <!-- PAGINATION -->
 
@@ -227,17 +149,16 @@ No products available
 
 <form method="get" class="flex items-center gap-2">
 
-<label for="productsPerPage" class="text-sm">Show</label>
+<label class="text-sm">Show</label>
 
 <select
-id="productsPerPage"
-name="productsPerPage"
+name="ordersPerPage"
 class="p-1 border rounded text-sm"
 onchange="this.form.submit()">
 
-<option value="5" <?= $productsPerPage == 5 ? 'selected' : '' ?>>5</option>
-<option value="10" <?= $productsPerPage == 10 ? 'selected' : '' ?>>10</option>
-<option value="20" <?= $productsPerPage == 20 ? 'selected' : '' ?>>20</option>
+<option value="5" <?= $ordersPerPage == 5 ? 'selected' : '' ?>>5</option>
+<option value="10" <?= $ordersPerPage == 10 ? 'selected' : '' ?>>10</option>
+<option value="20" <?= $ordersPerPage == 20 ? 'selected' : '' ?>>20</option>
 
 </select>
 
@@ -246,7 +167,6 @@ onchange="this.form.submit()">
 <span class="text-sm">per page</span>
 
 </form>
-
 
 <div class="flex items-center space-x-2">
 
@@ -257,8 +177,9 @@ $startPage = max(1, $pageNumber - 3);
 $endPage = min($totalPages, $pageNumber + 3);
 ?>
 
-<a class="px-3 py-1 border rounded <?= ($pageNumber <= 1) ? 'opacity-50 pointer-events-none' : '' ?>"
-href="?<?= querySetter(['page' => max(1, $pageNumber - 1), 'productsPerPage' => $productsPerPage]) ?>">
+<a
+class="px-3 py-1 border rounded <?= ($pageNumber <= 1) ? 'opacity-50 pointer-events-none' : '' ?>"
+href="?<?= querySetter(['page' => max(1, $pageNumber - 1), 'ordersPerPage' => $ordersPerPage]) ?>">
 
 Prev
 
@@ -268,7 +189,7 @@ Prev
 
 <a
 class="px-3 py-1 border rounded <?= ($p == $pageNumber) ? 'bg-black text-white' : '' ?>"
-href="?<?= querySetter(['page' => $p, 'productsPerPage' => $productsPerPage]) ?>">
+href="?<?= querySetter(['page' => $p, 'ordersPerPage' => $ordersPerPage]) ?>">
 
 <?= $p ?>
 
@@ -278,7 +199,7 @@ href="?<?= querySetter(['page' => $p, 'productsPerPage' => $productsPerPage]) ?>
 
 <a
 class="px-3 py-1 border rounded <?= ($pageNumber >= $totalPages) ? 'opacity-50 pointer-events-none' : '' ?>"
-href="?<?= querySetter(['page' => min($totalPages, $pageNumber + 1), 'productsPerPage' => $productsPerPage]) ?>">
+href="?<?= querySetter(['page' => min($totalPages, $pageNumber + 1), 'ordersPerPage' => $ordersPerPage]) ?>">
 
 Next
 
