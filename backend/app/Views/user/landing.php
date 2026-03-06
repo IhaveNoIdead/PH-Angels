@@ -25,7 +25,7 @@
     <!-- Hero -->
     <?= view('components/hero', [
         'heading' => 'Fly better, Fly Your Way',
-        'subHeading' => 'Helicaopter sales, modification, & repair in one Roof',
+        'subHeading' => 'Helicopter sales, modification, & repair in one Roof',
     ]) ?>
 
     <main class="space-y-12 py-10">

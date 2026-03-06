@@ -69,7 +69,7 @@ class Auth extends BaseController
         $session->set('user_id', $userArr['id']);
         log_message('debug', 'User Session: ' . print_r($session->get('user'), true));
 
-        $type = strtolower($userArr['type'] ?? 'regular_client');
+        $type = strtolower($userArr['type'] ?? 'client');
 
         if ($type === 'admin') {
             return redirect()->to('/admin/dashboard');
@@ -139,7 +139,7 @@ class Auth extends BaseController
             'last_name' => $post['last_name'],
             'email' => $post['email'],
             'password_hash' => password_hash($post['password'], PASSWORD_DEFAULT),
-            'type' => 'regular_client',
+            'type' => 'client',
         ];
 
         $inserted = $userModel->insert($data);

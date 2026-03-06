@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             ],
             'total_amount' => [
                 'type'       => 'DECIMAL',
-                'constraint' => '10,2',
+                'constraint' => '12,2',
                 'default'    => 0.00,
             ],
             'pickup_location' => [

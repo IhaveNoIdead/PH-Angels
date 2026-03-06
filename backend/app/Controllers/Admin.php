@@ -21,8 +21,6 @@ class Admin extends BaseController
         $data = [
             'totalUsers' => $usersModel->countAllResults(),
             'ordersToday' => $ordersModel->where('DATE(created_at)', $now)->countAllResults(),
-            'ordersThisWeek' => $ordersModel->where('DATE(created_at) >=', $weekStart)->countAllResults(),
-            'ordersThisMonth' => $ordersModel->where('DATE(created_at) >=', $monthStart)->countAllResults()
         ];
 
         return view('admin/dashboard', $data);
@@ -91,7 +89,7 @@ class Admin extends BaseController
             $product = $productsModel->find($delete);
 
             if ($product && $product->product_image) {
-                $oldPath = FCPATH . '/assets/uploads/images/products/' . $product->product_image;
+                $oldPath = FCPATH . '/' . $product->product_image;
 
                 if (is_file($oldPath)) {
                     unlink($oldPath);
@@ -139,7 +137,7 @@ class Admin extends BaseController
             ];
 
             if ($imageName) {
-                $productData['product_image'] = $imageName;
+                $productData['product_image'] = '/assets/uploads/images/products/' .  $imageName;
 
                 if ($update) {
                     $oldProduct = $productsModel->find($update);
@@ -153,8 +151,8 @@ class Admin extends BaseController
                 }
             }
 
-            if ($update) {
-                $productsModel->update($update, $productData);
+            if ($update) {$productsModel
+                ->update($update, $productData);
                 $session->setFlashdata('success', 'Product updated successfully');
             } else {
                 $productsModel->insert($productData);
