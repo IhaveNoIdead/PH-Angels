@@ -25,7 +25,7 @@ function querySetter(array $overrides = [])
 
 <?= view('components/head', ['title' => 'Philippines Angels']) ?>
 
-<body class="color-espresso">
+<body class="color-soft-white">
 
 <?= view('components/header') ?>
 
