@@ -19,98 +19,165 @@ function querySetter(array $overrides = [])
     return http_build_query($query);
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 
 <?= view('components/head', [
-    'title' => 'Café de Lumière | Admin - Accounts'
+    'title' => 'Philippines Angels'
 ]) ?>
 
-<body class="color-espresso">
-    <!-- NavBar -->
-    <?= view('components/header') ?>
+<body class="color-soft-white">
 
-    <main class="space-y-12 py-10">
-        <div class="md:flex md:space-x-6">
-            <?= view('components/sidebar/adminSidebar', ['active' => 'accountsPage']) ?>
-            <section class="shadow mx-8 my-8 p-6 rounded-xl color-dark-latte">
-                <div class="mb-6">
-                    <h2 class="mx-4 mt-4 mb-4 font-bold text-color-dark-espresso text-2xl text-center">Accounts</h2>
-                </div>
-                <?= view('components/control_panels/filter_search_sort/adminAccounts') ?>
-                <div class="shadow rounded-lg overflow-x-auto">
-                    <table class="min-w-full text-color-dark-espresso text-sm text-left">
-                        <thead class="color-light-latte">
-                            <tr>
-                                <th class="px-6 py-3">First Name</th>
-                                <th class="px-6 py-3">Middle Name</th>
-                                <th class="px-6 py-3">Last Name</th>
-                                <th class="px-6 py-3">Email</th>
-                                <th class="px-6 py-3">Type</th>
-                                <th class="px-6 py-3">Created At</th>
-                                <th class="px-6 py-3">Updated At</th>
-                            </tr>
-                        </thead>
+<!-- Navbar -->
+<?= view('components/header') ?>
 
-                        <tbody class="divide-y divide-gray-700 color-light-latte">
-                            <?php if (!empty($pageAccounts)): ?>
-                                <?php foreach ($pageAccounts as $user): ?>
-                                    <tr>
-                                        <td class="px-6 py-4"><?= esc($user->first_name) ?></td>
-                                        <td class="px-6 py-4"><?= esc($user->middle_name) ?></td>
-                                        <td class="px-6 py-4"><?= esc($user->last_name) ?></td>
-                                        <td class="px-6 py-4"><?= esc($user->email) ?></td>
-                                        <td class="px-6 py-4"><?= esc($user->type) ?></td>
-                                        <td class="px-6 py-4"><?= esc($user->created_at) ?></td>
-                                        <td class="px-6 py-4"><?= esc($user->updated_at) ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="7" class="py-6 text-gray-400 text-center">No users found</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+<main class="py-10">
 
-                    <div class="p-4 border-t color-light-latte">
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center space-x-2">
-                                <form method="get" style="display:flex;align-items:center;gap:.5rem;">
-                                    <label for="accountsPerPage" class="text-gray-700 text-sm">Show</label>
-                                    <select id="accountsPerPage" name="accountsPerPage" class="p-1 border rounded text-sm" onchange="this.form.submit()">
-                                        <option value="5" <?php echo $accountsPerPage == 5 ? 'selected' : ''; ?>>5</option>
-                                        <option value="10" <?php echo $accountsPerPage == 10 ? 'selected' : ''; ?>>10</option>
-                                        <option value="20" <?php echo $accountsPerPage == 20 ? 'selected' : ''; ?>>20</option>
-                                    </select>
-                                    <input type="hidden" name="page" value="1" />
-                                    <span class="text-gray-700 text-sm">per page</span>
-                                </form>
-                            </div>
+<div class="flex gap-10 mx-10">
 
-                            <div class="flex justify-end items-center space-x-2">
-                                <?php if ($totalPages > 1): ?>
-                                    <?php
-                                    $startPage = max(1, $pageNumber - 3);
-                                    $endPage = min($totalPages, $pageNumber + 3);
-                                    ?>
-                                    <a class="px-3 py-1 border rounded <?php echo ($pageNumber <= 1) ? 'opacity-50 pointer-events-none' : ''; ?>" href="?<?php echo querySetter(['page' => max(1, $pageNumber - 1), 'accountsPerPage' => $accountsPerPage]); ?>">Prev</a>
-                                    <?php for ($p = $startPage; $p <= $endPage; $p++): ?>
-                                        <a class="px-3 py-1 border rounded <?php echo ($p == $pageNumber) ? 'text-white' : ''; ?>" href="?<?php echo querySetter(['page' => $p, 'accountsPerPage' => $accountsPerPage]); ?>"><?php echo $p; ?></a>
-                                    <?php endfor; ?>
-                                    <a class="px-3 py-1 border rounded <?php echo ($pageNumber >= $totalPages) ? 'opacity-50 pointer-events-none' : ''; ?>" href="?<?php echo querySetter(['page' => min($totalPages, $pageNumber + 1), 'accountsPerPage' => $accountsPerPage]); ?>">Next</a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
+    <!-- Sidebar -->
+    <?= view('components/sidebar/adminSidebar', ['active' => 'accountsPage']) ?>
+
+    <!-- Main Content -->
+    <section class="flex-1 shadow p-6 rounded-[30px] color-light-dark">
+
+        
+
+        <?= view('components/control_panels/filter_search_sort/adminAccounts') ?>
+
+        <!-- Table -->
+        <div class="shadow rounded-xl overflow-x-auto">
+
+            <table class="min-w-full text-sm text-left">
+
+                <!-- Table Header -->
+                <thead class="color-base-dark text-color-soft-white">
+                    <tr>
+                        <th class="px-6 py-3">First Name</th>
+                        <th class="px-6 py-3">Middle Name</th>
+                        <th class="px-6 py-3">Last Name</th>
+                        <th class="px-6 py-3">Email</th>
+                        <th class="px-6 py-3">Type</th>
+                        <th class="px-6 py-3">Created At</th>
+                        <th class="px-6 py-3">Updated At</th>
+                    </tr>
+                </thead>
+
+                <!-- Table Body -->
+                <tbody class="color-soft-white">
+
+                <?php if (!empty($pageAccounts)): ?>
+
+                    <?php foreach ($pageAccounts as $user): ?>
+
+                    <tr class="border-b border-gray-400 hover:color-light-dark">
+
+                        <td class="px-6 py-4"><?= esc($user->first_name) ?></td>
+                        <td class="px-6 py-4"><?= esc($user->middle_name) ?></td>
+                        <td class="px-6 py-4"><?= esc($user->last_name) ?></td>
+                        <td class="px-6 py-4"><?= esc($user->email) ?></td>
+                        <td class="px-6 py-4"><?= esc($user->type) ?></td>
+                        <td class="px-6 py-4"><?= esc($user->created_at) ?></td>
+                        <td class="px-6 py-4"><?= esc($user->updated_at) ?></td>
+
+                    </tr>
+
+                    <?php endforeach; ?>
+
+                <?php else: ?>
+
+                    <tr>
+                        <td colspan="7" class="py-6 text-center text-gray-600">
+                            No users found
+                        </td>
+                    </tr>
+
+                <?php endif; ?>
+
+                </tbody>
+
+            </table>
+
+            <!-- Pagination -->
+            <div class="p-4 border-t color-soft-white">
+
+                <div class="flex justify-between items-center">
+
+                    <!-- Per Page -->
+                    <form method="get" class="flex items-center gap-2">
+
+                        <label for="accountsPerPage" class="text-sm">Show</label>
+
+                        <select
+                        id="accountsPerPage"
+                        name="accountsPerPage"
+                        class="p-1 border rounded text-sm"
+                        onchange="this.form.submit()">
+
+                            <option value="5" <?= $accountsPerPage == 5 ? 'selected' : '' ?>>5</option>
+                            <option value="10" <?= $accountsPerPage == 10 ? 'selected' : '' ?>>10</option>
+                            <option value="20" <?= $accountsPerPage == 20 ? 'selected' : '' ?>>20</option>
+
+                        </select>
+
+                        <input type="hidden" name="page" value="1" />
+                        <span class="text-sm">per page</span>
+
+                    </form>
+
+                    <!-- Page Buttons -->
+                    <div class="flex items-center gap-2">
+
+                    <?php if ($totalPages > 1): ?>
+
+                        <?php
+                        $startPage = max(1, $pageNumber - 3);
+                        $endPage = min($totalPages, $pageNumber + 3);
+                        ?>
+
+                        <a
+                        class="px-3 py-1 border rounded hover-secondary
+                        <?= ($pageNumber <= 1) ? 'opacity-50 pointer-events-none' : '' ?>"
+                        href="?<?= querySetter(['page' => max(1, $pageNumber - 1), 'accountsPerPage' => $accountsPerPage]); ?>">
+                        Prev
+                        </a>
+
+                        <?php for ($p = $startPage; $p <= $endPage; $p++): ?>
+
+                        <a
+                        class="px-3 py-1 border rounded
+                        <?= ($p == $pageNumber) ? 'color-base-dark text-color-soft-white' : 'hover-secondary' ?>"
+                        href="?<?= querySetter(['page' => $p, 'accountsPerPage' => $accountsPerPage]); ?>">
+                        <?= $p ?>
+                        </a>
+
+                        <?php endfor; ?>
+
+                        <a
+                        class="px-3 py-1 border rounded hover-secondary
+                        <?= ($pageNumber >= $totalPages) ? 'opacity-50 pointer-events-none' : '' ?>"
+                        href="?<?= querySetter(['page' => min($totalPages, $pageNumber + 1), 'accountsPerPage' => $accountsPerPage]); ?>">
+                        Next
+                        </a>
+
+                    <?php endif; ?>
+
                     </div>
-                </div>
-            </section>
-        </div>
-    </main>
 
-    <!-- Footer -->
-    <?= view('components/footer') ?>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+</main>
+
+<?= view('components/footer') ?>
 
 </body>
-
 </html>

@@ -1,26 +1,69 @@
-<form id="accountsFilterForm" onsubmit="return false;" class="flex sm:flex-row flex-col sm:items-center gap-3 mb-4">
-    <input type="search" id="accounts_query" placeholder="Search by name or email" class="shadow-sm px-3 py-2 color-light-latte border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-1/3">
+<form 
+id="accountsFilterForm"
+onsubmit="return false;"
+class="flex sm:flex-row flex-col sm:items-center gap-3 mb-6">
 
-    <select id="accounts_sort" class="shadow-sm px-3 py-2 color-light-latte border border-slate-200 rounded-md focus:outline-none w-full sm:w-48 cursor-pointer">
+    <!-- Search -->
+    <input
+    type="search"
+    id="accounts_query"
+    placeholder="Search by name or email"
+    class="shadow-sm px-3 py-2 border rounded-md
+    color-soft-white
+    w-full sm:w-1/3
+    focus:outline-none">
+
+    <!-- Sort -->
+    <select
+    id="accounts_sort"
+    class="shadow-sm px-3 py-2 border rounded-md
+    color-soft-white
+    w-full sm:w-48 cursor-pointer
+    focus:outline-none">
+
         <option value="">Sort — default</option>
         <option value="name_asc">Name A → Z</option>
         <option value="name_desc">Name Z → A</option>
         <option value="email_asc">Email A → Z</option>
         <option value="email_desc">Email Z → A</option>
+
     </select>
 
-    <select id="accounts_type" class="shadow-sm px-3 py-2 color-light-latte border border-slate-200 rounded-md focus:outline-none w-full sm:w-48 cursor-pointer">
+    <!-- Type Filter -->
+    <select
+    id="accounts_type"
+    class="shadow-sm px-3 py-2 border rounded-md
+    color-soft-white
+    w-full sm:w-48 cursor-pointer
+    focus:outline-none">
+
         <option value="all">Type — all</option>
         <option value="manager">Manager</option>
         <option value="admin">Admin</option>
         <option value="employee">Employee</option>
         <option value="premium_client">Premium Client</option>
         <option value="regular_client">Regular Client</option>
+
     </select>
 
-    <div class="flex color-light-latte gap-2 ml-auto  rounded-md">
-        <button type="button" id="accountsResetBtn" class="inline-flex items-center bg-white hover:bg-slate-50 shadow-sm px-3 py-2 border border-slate-200 rounded-md cursor-pointer">Reset</button>
+    <!-- Reset Button -->
+    <div class="flex gap-2 ml-auto">
+
+        <button
+        type="button"
+        id="accountsResetBtn"
+        class="px-4 py-2 rounded-md
+        color-gold
+        text-color-midnight-black
+        hover-primary
+        cursor-pointer shadow-sm">
+
+        Reset
+
+        </button>
+
     </div>
+
 </form>
 
 <script>
