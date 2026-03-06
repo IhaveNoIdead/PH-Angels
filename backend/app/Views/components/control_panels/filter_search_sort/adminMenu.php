@@ -36,7 +36,7 @@ focus:outline-none">
 type="button"
 id="productsResetBtn"
 class="px-4 py-2 rounded-md
-color-light-dark
+color-base-dark
 text-color-soft-white
 hover-primary
 cursor-pointer shadow-sm">

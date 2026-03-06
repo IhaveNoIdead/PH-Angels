@@ -37,6 +37,8 @@ function querySetter(array $overrides = [])
 
 <section class="shadow w-full my-8 p-6 rounded-xl color-light-dark">
 
+<?= view('components/control_panels/filter_search_sort/adminMenu') ?>
+
 <div class="shadow rounded-lg overflow-x-auto">
 
 <table class="min-w-full text-left text-sm">

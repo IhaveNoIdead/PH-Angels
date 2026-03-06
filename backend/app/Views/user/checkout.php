@@ -116,7 +116,7 @@
                 </div>
 
                 <button type="submit" class="mt-4 w-full py-3 rounded-lg font-bold color-weathered-blue hover-secondary">
-                    Confirm & Place Order
+                    Place Order
                 </button>
             </form>
 

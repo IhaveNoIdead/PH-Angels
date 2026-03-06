@@ -80,7 +80,6 @@ class Checkout extends BaseController
             ]);
         }
 
-        $this->session->remove('cart');
-        return redirect()->to('/')->with('success', 'Order placed successfully!');
+        return redirect()->to('/paymentPage')->with('success', 'Order placed successfully!');
     }
 }

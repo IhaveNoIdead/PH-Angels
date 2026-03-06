@@ -36,6 +36,9 @@ $routes->post('/cart/remove/(:num)', 'Cart::remove/$1');
 $routes->get('/checkout', 'Checkout::index');  
 $routes->post('/checkout/PlaceOrder', 'Checkout::PlaceOrder');
 
+$routes->get('/paymentPage', 'Payment::index');  
+$routes->post('/paymentPage/Pay', 'Payment::Pay');
+
 $routes->group('user', function ($routes) {
     $routes->post('update', 'Users::updateDetails');
     $routes->post('delete', 'Users::deleteAccount'); // for deleting account
