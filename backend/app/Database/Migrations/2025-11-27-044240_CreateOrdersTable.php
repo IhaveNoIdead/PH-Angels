@@ -29,6 +29,12 @@ class CreateOrdersTable extends Migration
                 'constraint' => 255,
                 'null'       => false,
             ],
+            'status' => [
+                'type'       => 'ENUM',
+                'constraint' => ['Pending','Completed', 'Cancelled'],
+                'default'    => 'Pending',
+                'null'       => false
+            ],
             'pickup_date' => [
                 'type'       => 'DATE',
                 'null'       => false,

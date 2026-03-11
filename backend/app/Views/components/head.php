@@ -220,5 +220,61 @@
                 background: var(--gold);
                 transform: scale(1.2);
             }
+
+            /* Hamburger menu styles */
+            .menu-toggle 
+            {
+                display: none;
+            }
+
+            .hamburger 
+            {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+
+            .hamburger span 
+            {
+                height: 3px;
+                width: 28px;
+                background: white;
+                border-radius: 2px;
+            }
+
+            /* Responsive */
+
+            @media (max-width: 768px) 
+            {
+                .nav-links ul
+                {
+                    display: none;
+                    flex-direction: column;
+                    background-color: var(--midnight-black);
+                    position: absolute;
+                    top: 96px;
+                    left: 0;
+                    width: 100%;
+                    padding: 20px 0;
+                    gap: 10px;
+                }
+
+                .menu-toggle:checked + .hamburger + .nav-links ul
+                {
+                    display: flex;
+                }
+
+                .hamburger 
+                {
+                    display: flex;
+                }
+
+                .btn
+                {
+                    font-size: 1.5rem;
+                    padding: 10px 0;
+                }
+            }
         </style>
     </head>

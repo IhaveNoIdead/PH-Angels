@@ -22,7 +22,6 @@
         <!-- Dashboard Cards -->
         <div class="grid grid-cols-2 gap-10">
 
-            <!-- Current Users (Full Width) -->
             <div class="color-light-dark p-6 rounded-[20px] shadow-lg">
                 <h3 class="text-2xl font-bold text-color-soft-white">
                     Current Users: <?= esc($totalUsers) ?>
@@ -32,7 +31,14 @@
             <!-- Pending Orders -->
             <div class="color-light-dark p-6 rounded-[20px] shadow-lg">
                 <h3 class="text-2xl font-bold text-color-soft-white">
-                    Pending Orders: <?= esc($ordersToday) ?>
+                    Pending Orders: <?= esc($ordersPending) ?>
+                </h3>
+            </div>
+
+            <!-- Complete Orders -->
+            <div class="color-light-dark p-6 rounded-[20px] shadow-lg">
+                <h3 class="text-2xl font-bold text-color-soft-white">
+                    Completed Orders: <?= esc($ordersCompleted) ?>
                 </h3>
             </div>
 

@@ -31,10 +31,10 @@
     <main class="space-y-12 py-10">
 
         <!-- Plans section -->
-        <section class="shadow mx-auto p-10 rounded-xl max-w-7xl color-dark-latte">
+        <section class="shadow mx-auto p-10 rounded-xl max-w-7xl">
             <h2 class="mb-8 font-bold text-color-soft-white text-4xl text-center"> Plans </h2>
 
-            <div class="place-items-center gap-8 grid grid-cols-4 items-stretch">
+            <div class="place-items-center gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 items-stretch">
                 <?= view('components/cards/card', [
                     'title' => 'Angel Check',
                     'description' => 'Our essential care package, perfect for owners flying short domestic routes. It provides the peace of mind every pilot deserves with basic yet crucial pre-flight inspections and diagnostics.',
