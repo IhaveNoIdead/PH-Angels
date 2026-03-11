@@ -16,6 +16,7 @@ class OrdersModel extends Model
         'user_id',
         'total_amount',
         'pickup_location',
+        'status',
         'pickup_date',
         'pickup_time',
         'created_at',

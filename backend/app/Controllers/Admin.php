@@ -14,13 +14,10 @@ class Admin extends BaseController
         $usersModel = new UsersModel();
         $ordersModel = new OrdersModel();
         
-        $now = date('Y-m-d');
-        $weekStart = date('Y-m-d', strtotime('monday this week'));
-        $monthStart = date('Y-m-01');
-
         $data = [
             'totalUsers' => $usersModel->countAllResults(),
-            'ordersToday' => $ordersModel->where('DATE(created_at)', $now)->countAllResults(),
+            'ordersPending' => $ordersModel->where('status', 'Pending')->countAllResults(),
+            'ordersCompleted' => $ordersModel->withDeleted()->where('status', 'Completed')->countAllResults(),
         ];
 
         return view('admin/dashboard', $data);
@@ -40,15 +37,36 @@ class Admin extends BaseController
         $session = session();
         $ordersModel = new OrdersModel();
         $request = service('request');
-        $delete = $request->getPost('delete');
 
-        if ($delete) {
-            $order = $ordersModel->find($delete);
+        $complete = $request->getPost('Complete');
+        $cancel = $request->getPost('Cancel');
+
+         if ($complete) 
+        {
+            $order = $ordersModel->find($complete);
 
             if($order)
             {
-                $ordersModel->delete($delete);
-                $session->setFlashdata('success', 'order deleted successfully');
+                $ordersModel->update($complete, [
+                    'status' => 'Completed'
+                ]);
+
+                $ordersModel->delete($complete);
+                $session->setFlashdata('success', 'Order marked as completed');
+            }
+            return redirect()->to('/admin/orderPage');
+        }
+        elseif ($cancel) {
+            $order = $ordersModel->find($cancel);
+
+            if($order)
+            {
+                $ordersModel->update($cancel, [
+                    'status' => 'Cancelled'
+                ]);
+
+                $ordersModel->delete($cancel);
+                $session->setFlashdata('success', 'Order cancelled');
             }
             return redirect()->to('/admin/orderPage');
         }

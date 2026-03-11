@@ -1,24 +1,35 @@
 <?php
-$pageNumber = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
-$ordersPerPage = isset($_GET['ordersPerPage']) ? max(1, (int) $_GET['ordersPerPage']) : 10;
+    $pageNumber = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
+    $ordersPerPage = isset($_GET['ordersPerPage']) ? max(1, (int) $_GET['ordersPerPage']) : 10;
 
-$dataToUse = $orders ?? [];
-$total = count($dataToUse);
-$totalPages = (int) max(1, ceil($total / $ordersPerPage));
+    $dataToUse = $orders ?? [];
+    $total = count($dataToUse);
+    $totalPages = (int) max(1, ceil($total / $ordersPerPage));
 
-if ($pageNumber > $totalPages) {
-    $pageNumber = $totalPages;
-}
+    if ($pageNumber > $totalPages) {
+        $pageNumber = $totalPages;
+    }
 
-$start = ($pageNumber - 1) * $ordersPerPage;
-$pageOrders = array_slice($dataToUse, $start, $ordersPerPage);
+    $start = ($pageNumber - 1) * $ordersPerPage;
+    $pageOrders = array_slice($dataToUse, $start, $ordersPerPage);
 
-function querySetter(array $overrides = [])
-{
-    $query = array_merge($_GET, $overrides);
-    return http_build_query($query);
-}
+    function querySetter(array $overrides = [])
+    {
+        $query = array_merge($_GET, $overrides);
+        return http_build_query($query);
+    }
 ?>
+<?php if(session()->getFlashdata('success')): ?>
+    <div class="p-4 mb-4 text-green-700 bg-green-100 rounded">
+        <?= session()->getFlashdata('success') ?>
+    </div>
+<?php endif; ?>
+
+<?php if(session()->getFlashdata('error')): ?>
+    <div class="p-4 mb-4 text-red-700 bg-red-100 rounded">
+        <?= session()->getFlashdata('error') ?>
+    </div>
+<?php endif; ?>
 
 <!DOCTYPE html>
 <html>
@@ -49,6 +60,7 @@ function querySetter(array $overrides = [])
 <th class="px-6 py-3">Account No.</th>
 <th class="px-6 py-3">Order No.</th>
 <th class="px-6 py-3">Order Info</th>
+<th class="px-6 py-3">Order Status</th>
 <th class="px-6 py-3">Date Ordered</th>
 <th class="px-6 py-3 text-center">Action</th>
 </tr>
@@ -86,42 +98,45 @@ Pickup: <?= esc($order->pickup_location) ?>
 </td>
 
 <td class="px-6 py-4">
+
+<div><?= esc($order->status) ?></div>
+
+</td>
+
+<td class="px-6 py-4">
 <?= esc($order->created_at) ?>
 </td>
 
 <td class="px-6 py-4 text-center">
 
-<form method="post" action="/admin/orderPage" class="inline">
+    <form method="post" action="/admin/orderPage" class="inline">
 
-<button
-type="submit"
-name="delete"
-value="<?= esc($order->id) ?>"
-class="bg-black hover:bg-gold-700 px-3 py-1 rounded-md text-white cursor-pointer">
+        <button
+            type="submit"
+            name="Complete"
+            value="<?= esc($order->id) ?>"
+            class="bg-black hover:bg-gold-700 px-3 py-1 rounded-md text-white cursor-pointer">
+            Complete
+        </button>
 
-Complete
+    </form>
 
-</button>
+    <form
+        method="post"
+        action="/admin/orderPage"
+        class="inline"
+        onsubmit="return confirm('Cancel this order?');">
 
-</form>
+        <button
+        type="submit"
+        name="Cancel"
+        value="<?= esc($order->id) ?>"
+        class="bg-white-600 hover:bg-white-700 px-3 py-1 rounded-md text-black cursor-pointer border border-gray-400">
 
-<form
-method="post"
-action="/admin/orderPage"
-class="inline"
-onsubmit="return confirm('Cancel this order?');">
+        Cancel
 
-<button
-type="submit"
-name="delete"
-value="<?= esc($order->id) ?>"
-class="bg-white-600 hover:bg-white-700 px-3 py-1 rounded-md text-black cursor-pointer border border-gray-400">
-
-Cancel
-
-</button>
-
-</form>
+        </button>
+    </form>
 
 </td>
 
@@ -132,7 +147,7 @@ Cancel
 <?php else: ?>
 
 <tr>
-<td colspan="5" class="py-6 text-gray-400 text-center">
+<td colspan="6" class="py-6 text-gray-400 text-center">
 No orders available
 </td>
 </tr>

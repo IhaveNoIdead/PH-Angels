@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="pt-4 border-t">
-                    <p class="text-sm">Payment Cash/Card On Pickup</p>
+                    <p class="text-sm">Payment Online Only</p>
                     <p class="font-bold text-lg">EstTotal: ₱<?= number_format($total, 2) ?></p>
                 </div>
 
