@@ -29,6 +29,9 @@ $old = $old ?? [];
           placeholder="Enter your first name"
           class="color-soft-white px-4 py-2 border border-[#C9A24D] rounded-lg focus:outline-none focus:ring-[#4A6FA5] focus:ring-2 w-full text-black"
           required>
+          <?php if(isset($errors['first_name'])): ?>
+            <p class="text-red-500 text-sm mt-1"><?= esc($errors['first_name']) ?></p>
+          <?php endif; ?>
       </div>
 
       <!-- Last Name -->
@@ -41,6 +44,9 @@ $old = $old ?? [];
           placeholder="Enter your last name"
           class="color-soft-white px-4 py-2 border border-[#C9A24D] rounded-lg focus:outline-none focus:ring-[#4A6FA5] focus:ring-2 w-full text-black"
           required>
+          <?php if(isset($errors['last_name'])): ?>
+            <p class="text-red-500 text-sm mt-1"><?= esc($errors['last_name']) ?></p>
+          <?php endif; ?>
       </div>
 
       <!-- Email -->
@@ -54,6 +60,9 @@ $old = $old ?? [];
           placeholder="Enter your email"
           class="color-soft-white px-4 py-2 border border-[#C9A24D] rounded-lg focus:outline-none focus:ring-[#4A6FA5] focus:ring-2 w-full text-black"
           required>
+          <?php if(isset($errors['email'])): ?>
+            <p class="text-red-500 text-sm mt-1"><?= esc($errors['email']) ?></p>
+          <?php endif; ?>
       </div>
 
       <!-- Password -->
@@ -65,6 +74,9 @@ $old = $old ?? [];
           placeholder="Create a password"
           class="color-soft-white px-4 py-2 border border-[#C9A24D] rounded-lg focus:outline-none focus:ring-[#4A6FA5] focus:ring-2 w-full text-black"
           required>
+          <?php if(isset($errors['password'])): ?>
+            <p class="text-red-500 text-sm mt-1"><?= esc($errors['password']) ?></p>
+          <?php endif; ?>
       </div>
 
       <!-- Confirm Password -->
@@ -72,10 +84,13 @@ $old = $old ?? [];
         <label class="block mb-1 font-semibold text-[#C9A24D] text-sm">Confirm Password</label>
         <input
           type="password"
-          name="confirm_password"
+          name="password_confirm"
           placeholder="Confirm your password"
           class="color-soft-white px-4 py-2 border border-[#C9A24D] rounded-lg focus:outline-none focus:ring-[#4A6FA5] focus:ring-2 w-full text-black"
           required>
+          <?php if(isset($errors['password_confirm'])): ?>
+            <p class="text-red-500 text-sm mt-1"><?= esc($errors['password_confirm']) ?></p>
+          <?php endif; ?>
       </div>
 
       <!-- Submit Button -->

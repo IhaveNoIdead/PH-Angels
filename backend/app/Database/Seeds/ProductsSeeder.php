@@ -60,7 +60,7 @@ class ProductsSeeder extends Seeder
             ],
             [
                 'product_name' => 'External Cargo Hook System Installation',
-                'product_description' => 'Soft Danish pastry rolled with warm cinnamon and sugar.',
+                'product_description' => 'Outfitted with a certified external cargo hook system for sling load operations. Ideal for delivering supplies to remote sites, lifting heavy loads, or supporting disaster relief missions across the Philippine islands..',
                 'price' => 500000.00,
                 'type' => 'Modification',
                 'product_image' => '/assets/image/mods/cargo.jpg',

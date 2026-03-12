@@ -33,8 +33,6 @@
 
                         <?php if ($type === 'admin'): ?>
                             <li><a href="/admin/dashboard" class="btn">Dashboard</a></li>
-                        <?php elseif ($type === 'client'): ?>
-                            <li><a href="/order" class="btn">Products</a></li>
                         <?php endif; ?>
 
                         <li><a href="/userProfile" class="btn">Profile</a></li>

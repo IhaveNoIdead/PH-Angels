@@ -111,7 +111,6 @@ class Auth extends BaseController
         $validation = \Config\Services::validation();
 
         $validation->setRule('first_name', 'First name', 'required|min_length[2]|max_length[100]');
-        $validation->setRule('middle_name', 'Middle name', 'permit_empty|max_length[100]');
         $validation->setRule('last_name', 'Last name', 'required|min_length[2]|max_length[100]');
         $validation->setRule('email', 'Email', 'required|valid_email|is_unique[users.email]');
         $validation->setRule('password', 'Password', 'required|min_length[6]');

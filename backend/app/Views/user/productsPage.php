@@ -18,7 +18,7 @@
 
         <!-- Products Showcase -->
         <section class="shadow p-10 rounded-xl">
-            <h2 class="mb-10 font-bold text-color-soft-white text-4xl text-center">Helicoptor</h2>
+            <h2 class="mb-10 font-bold text-color-soft-white text-4xl text-center">Helicopter</h2>
 
             <div class="gap-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
                 <?php foreach ($helicoptorProducts as $helicoptor) : ?>
