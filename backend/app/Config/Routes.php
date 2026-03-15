@@ -17,6 +17,8 @@ $routes->get('/admin/menuPage', 'Admin::showMenuPage');
 $routes->post('/admin/menuPage', 'Admin::menuPage');
 
 $routes->get('/productsPage', 'MenuController::menu');
+$routes->get('/product/(:num)', 'MenuController::productDetails/$1');
+
 $routes->get('/loginPage', 'Auth::showLoginPage');
 $routes->post('/loginPage', 'Auth::loginPage');
 

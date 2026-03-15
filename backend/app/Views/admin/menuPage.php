@@ -40,7 +40,7 @@ if ($editing) {
         'title' => 'Philippines Angels'
     ]) ?>
 
-    <body class="color-soft-white text-color-soft-white">
+    <body class="color-base-dark text-color-soft-white">
 
         <?= view('components/header') ?>
 
@@ -50,7 +50,7 @@ if ($editing) {
 
                 <?= view('components/sidebar/adminSidebar', ['active' => 'menuPage']) ?>
 
-                <section class="shadow mx-8 my-8 p-6 rounded-xl color-light-dark">
+                <section class="shadow mx-8 my-8 p-6 rounded-xl color-midnight-black">
 
                     <!-- Add Product Form -->
                     <form method="post" action="/admin/menuPage" enctype="multipart/form-data" class="space-y-3 mb-8">
@@ -65,7 +65,7 @@ if ($editing) {
                             name="product_name"
                             placeholder="Product Name"
                             value="<?= esc(old('product_name', $productToEdit->product_name ?? '')) ?>"
-                            class="px-3 py-2 rounded-md w-full sm:w-1/3 color-soft-white text-black "
+                            class="px-3 py-2 rounded-md w-full sm:w-1/3 color-light-dark  text-color-soft-white "
                             required>
 
                             <input
@@ -74,7 +74,7 @@ if ($editing) {
                             name="price"
                             placeholder="Price"
                             value="<?= esc(old('price', $productToEdit->price ?? '')) ?>"
-                            class="px-3 py-2 rounded-md w-full sm:w-1/3 color-soft-white text-black "
+                            class="px-3 py-2 rounded-md w-full sm:w-1/3 color-light-dark  text-color-soft-white "
                             required>
 
                             <input
@@ -82,7 +82,7 @@ if ($editing) {
                             name="product_description"
                             placeholder="Description"
                             value="<?= esc(old('product_description', $productToEdit->product_description ?? '')) ?>"
-                            class="px-3 py-2 rounded-md w-full sm:w-1/3 color-soft-white text-black"
+                            class="px-3 py-2 rounded-md w-full sm:w-1/3 color-light-dark  text-color-soft-white"
                             required>
 
                             <input
@@ -90,7 +90,7 @@ if ($editing) {
                             name="type"
                             placeholder="Helicopter"
                             value="<?= esc(old('type', $productToEdit->type ?? '')) ?>"
-                            class="px-3 py-2 rounded-md w-full sm:w-1/4 color-soft-white text-black "
+                            class="px-3 py-2 rounded-md w-full sm:w-1/4 color-light-dark  text-color-soft-white "
                             required>
 
                             <input
@@ -102,7 +102,7 @@ if ($editing) {
 
                             <button
                                 type="submit"
-                                class="px-4 py-2 rounded-md color-midnight-black text-white hover-secondary text-soft-white cursor-pointer shadow-sm">
+                                class="px-4 py-2 rounded-md color-light-dark text-white hover-secondary text-soft-white cursor-pointer shadow-sm">
                                 <?= $editing ? 'Update Product' : 'Add Product' ?>
                             </button>
 
@@ -128,7 +128,7 @@ if ($editing) {
                                     </tr>
                                 </thead>
 
-                                <tbody class="divide-y color-soft-white text-black">
+                                <tbody class="divide-y color-light-dark  text-color-soft-white">
                                     <?php foreach ($pageProducts as $product): ?>
                                         <tr>
                                             <td class="px-6 py-4">
@@ -167,7 +167,7 @@ if ($editing) {
                                                     type="submit"
                                                     name="delete"
                                                     value="<?= esc($product->id) ?>"
-                                                    class="px-3 py-1 border rounded cursor-pointer color-light-dark text-color-soft-white hover-primary">
+                                                    class="px-3 py-1 gap-8 border rounded cursor-pointer color-light-dark text-color-soft-white hover-primary">
                                                     Delete
                                                     </button>
                                                 </form>
@@ -176,7 +176,7 @@ if ($editing) {
                                                     <button
                                                     name="update_id"
                                                     value="<?= esc($product->id) ?>"
-                                                    class="px-3 py-1 border rounded cursor-pointer color-soft-white text-color-light-dark hover-secondary">
+                                                    class="px-3 py-1 border rounded cursor-pointer color-soft-white text-black hover-secondary">
                                                     Edit
                                                     </button>
                                                 </form>
@@ -233,7 +233,7 @@ if ($editing) {
                                         <?php for ($p = $startPage; $p <= $endPage; $p++): ?>
 
                                         <a
-                                        class="px-3 py-1 border-btn rounded <?= ($p == $pageNumber) ? 'color-light-dark text-black' : '' ?>"
+                                        class="px-3 py-1 border-btn rounded <?= ($p == $pageNumber) ? 'color-light-dark  text-color-soft-white' : '' ?>"
                                         href="?<?= querySetter(['page' => $p, 'productsPerPage' => $productsPerPage]) ?>">
                                         <?= $p ?>
                                         </a>

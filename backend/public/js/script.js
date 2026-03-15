@@ -2,7 +2,7 @@ function showFlashMessage(message, type = 'success')
 {
     const path = window.location.pathname;
 
-    if (!path.includes('/productsPage', ) && !path.includes('/plansPage', ))
+    if (!path.includes('/productsPage') && !path.includes('/plansPage') && !path.includes('/product/'))
     {
         return;
     } 

@@ -1,8 +1,8 @@
-<article class="rounded-xl shadow-[0_0_8px_var(--gold)] overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_12px_#C9A24D] hover:ring-2 hover:ring-[#C9A24D] duration-300 cursor-default flex flex-col h-full min-h-[420px]">
+<article class="rounded-xl shadow-[0_0_14px_var(--gold)] overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_12px_#C9A24D] hover:ring-2 hover:ring-[#C9A24D] duration-300 cursor-default flex flex-col h-full min-h-[420px]">
     <?php if(!empty($image)) : ?>
         <img src="<?= esc($image) ?>" alt="<?= esc($title ?? '') ?>" class="w-full  h-48 object-cover">
     <?php endif; ?>
-    <div class="p-5 flex flex-col justify-between color-midnight-black flex-1">
+    <div class="p-5 flex flex-col justify-between color-light-dark flex-1">
         <div>
             <?php if(!empty($title)) : ?>
                 <h3 class="text-xl font-bold text-color-soft-white"><?= esc($title) ?></h3>

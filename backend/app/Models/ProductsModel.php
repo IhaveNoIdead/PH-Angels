@@ -14,6 +14,7 @@ class ProductsModel extends Model
     protected $allowedFields = [
         'product_name',
         'product_description',
+        'product_specs',
         'price',
         'product_image',
         'type'

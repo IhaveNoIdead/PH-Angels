@@ -28,6 +28,8 @@
                             'description' =>  $helicoptor->product_description,
                             'price' =>  '₱' . number_format($helicoptor->price, 2),
                             'image' =>  $helicoptor->product_image,
+                            'link' => site_url('/product/' . $helicoptor->id),
+                            'linkName' => 'More Details'
                         ]) ?>
                         <form action="<?= site_url('/cart/add') ?>" method="post" class="cart-action-form mt-4 px-2">
                             <input type="hidden" name="product_id" value="<?= $helicoptor->id ?>">
@@ -52,6 +54,8 @@
                             'description' =>  $modification->product_description,
                             'price' =>  '₱' . number_format($modification->price),
                             'image' =>  $modification->product_image,
+                            'link' => site_url('/product/' . $modification->id),
+                            'linkName' => 'More Details'
                         ]) ?>
                         <form action="<?= site_url('/cart/add') ?>" method="post" class="cart-action-form mt-4 px-2">
                             <input type="hidden" name="product_id" value="<?= $modification->id ?>">
@@ -76,6 +80,8 @@
                             'description' =>  $repair->product_description,
                             'price' =>  '₱' . number_format($repair->price),
                             'image' =>  $repair->product_image,
+                            'link' => site_url('/product/' . $repair->id),
+                            'linkName' => 'More Details'
                         ]) ?>
                         <form action="<?= site_url('/cart/add') ?>" method="post" class="cart-action-form mt-4 px-2">
                             <input type="hidden" name="product_id" value="<?= $repair->id ?>">

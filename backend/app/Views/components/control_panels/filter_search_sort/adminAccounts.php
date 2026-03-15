@@ -9,7 +9,7 @@ class="flex sm:flex-row flex-col sm:items-center gap-3 mb-6">
     id="accounts_query"
     placeholder="Search by name or email"
     class="shadow-sm px-3 py-2 border rounded-md
-    color-soft-white
+    color-light-dark text-color-soft-white
     w-full sm:w-1/3
     focus:outline-none">
 
@@ -17,7 +17,7 @@ class="flex sm:flex-row flex-col sm:items-center gap-3 mb-6">
     <select
     id="accounts_sort"
     class="shadow-sm px-3 py-2 border rounded-md
-    color-soft-white
+    color-light-dark text-color-soft-white
     w-full sm:w-48 cursor-pointer
     focus:outline-none">
 
@@ -33,7 +33,7 @@ class="flex sm:flex-row flex-col sm:items-center gap-3 mb-6">
     <select
     id="accounts_type"
     class="shadow-sm px-3 py-2 border rounded-md
-    color-soft-white
+    color-light-dark text-color-soft-white
     w-full sm:w-48 cursor-pointer
     focus:outline-none">
 
@@ -53,10 +53,10 @@ class="flex sm:flex-row flex-col sm:items-center gap-3 mb-6">
         type="button"
         id="accountsResetBtn"
         class="px-4 py-2 rounded-md
-        color-gold
-        text-color-midnight-black
-        hover-primary
-        cursor-pointer shadow-sm">
+        color-light-dark
+        text-color-soft-white
+        hover-secondary 
+        text-soft-white cursor-pointer shadow-sm">
 
         Reset
 

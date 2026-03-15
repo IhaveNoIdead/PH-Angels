@@ -27,7 +27,7 @@ function querySetter(array $overrides = [])
     'title' => 'Philippines Angels'
 ]) ?>
 
-<body class="color-soft-white">
+<body class="color-base-dark">
 
 <!-- Navbar -->
 <?= view('components/header') ?>
@@ -40,7 +40,7 @@ function querySetter(array $overrides = [])
     <?= view('components/sidebar/adminSidebar', ['active' => 'accountsPage']) ?>
 
     <!-- Main Content -->
-    <section class="flex-1 shadow p-6 rounded-[30px] color-light-dark">
+    <section class="flex-1 shadow p-6 rounded-[30px] color-midnight-black">
 
         
 
@@ -65,13 +65,13 @@ function querySetter(array $overrides = [])
                 </thead>
 
                 <!-- Table Body -->
-                <tbody class="color-soft-white">
+                <tbody class="color-light-dark">
 
                 <?php if (!empty($pageAccounts)): ?>
 
                     <?php foreach ($pageAccounts as $user): ?>
 
-                    <tr class="border-b border-gray-400 hover:color-light-dark">
+                    <tr class="border-b text-color-soft-white">
 
                         <td class="px-6 py-4"><?= esc($user->first_name) ?></td>
                         <td class="px-6 py-4"><?= esc($user->middle_name) ?></td>
@@ -100,7 +100,7 @@ function querySetter(array $overrides = [])
             </table>
 
             <!-- Pagination -->
-            <div class="p-4 border-t color-soft-white">
+            <div class="p-4 border-t text-color-soft-white color-base-dark">
 
                 <div class="flex justify-between items-center">
 

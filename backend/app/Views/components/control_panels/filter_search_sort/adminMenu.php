@@ -9,15 +9,15 @@ type="search"
 id="products_query"
 placeholder="Search by Product ID or Product Name"
 class="shadow-sm px-3 py-2 border rounded-md
-    color-soft-white
+    color-light-dark
     w-full sm:w-1/3
-    focus:outline-none text-black">
+    focus:outline-none ">
 
 <!-- Sort -->
 <select
 id="products_sort"
 class="shadow-sm px-3 py-2 border rounded-md
-color-soft-white text-black
+color-light-dark 
 w-full sm:w-48 cursor-pointer
 focus:outline-none">
 
@@ -36,10 +36,10 @@ focus:outline-none">
 type="button"
 id="productsResetBtn"
 class="px-4 py-2 rounded-md
-color-base-dark
+color-light-dark
 text-color-soft-white
-hover-primary
-cursor-pointer shadow-sm">
+hover-secondary 
+text-soft-white cursor-pointer shadow-sm">
 
 Reset
 

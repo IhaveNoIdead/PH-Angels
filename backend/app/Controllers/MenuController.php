@@ -34,4 +34,15 @@ class MenuController extends Controller
 
          return view('user/plansPage',  $planData);
     }
+
+    public function ProductDetails($id)
+    {
+        $productModel = new \App\Models\ProductsModel();
+
+        $product = $productModel->find($id);
+
+        return view('user/productDetails', [
+            'product' => $product
+        ]);
+    }
 }

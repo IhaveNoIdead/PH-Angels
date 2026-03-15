@@ -36,7 +36,7 @@
 
 <?= view('components/head', ['title' => 'Philippines Angels']) ?>
 
-<body class="color-soft-white">
+<body class="color-base-dark">
 
 <?= view('components/header') ?>
 
@@ -46,9 +46,9 @@
 
 <?= view('components/sidebar/adminSidebar', ['active' => 'orderPage']) ?>
 
-<section class="shadow w-full my-8 p-6 rounded-xl color-light-dark">
+<section class="shadow w-full my-8 p-6 rounded-xl color-midnight-black">
 
-<?= view('components/control_panels/filter_search_sort/adminMenu') ?>
+<?= view('components/control_panels/filter_search_sort/adminOrders') ?>
 
 <div class="shadow rounded-lg overflow-x-auto">
 
@@ -67,7 +67,7 @@
 
 </thead>
 
-<tbody class="divide-y color-soft-white text-black">
+<tbody class="divide-y  color-light-dark text-color-soft-white">
 
 <?php if (!empty($pageOrders)): ?>
 
@@ -87,11 +87,11 @@
 
 <div>Total: ₱<?= esc($order->total_amount) ?></div>
 
-<div class="text-xs text-gray-600">
+<div class="text-xs text-color-soft-white">
 Pickup: <?= esc($order->pickup_location) ?>
 </div>
 
-<div class="text-xs text-gray-600">
+<div class="text-xs text-color-soft-white">
 <?= esc($order->pickup_date) ?> <?= esc($order->pickup_time) ?>
 </div>
 
@@ -115,7 +115,7 @@ Pickup: <?= esc($order->pickup_location) ?>
             type="submit"
             name="Complete"
             value="<?= esc($order->id) ?>"
-            class="bg-black hover:bg-gold-700 px-3 py-1 rounded-md text-white cursor-pointer">
+            class="px-3 py-1 gap-8 border rounded cursor-pointer color-light-dark text-color-soft-white hover-primary">
             Complete
         </button>
 
@@ -131,7 +131,7 @@ Pickup: <?= esc($order->pickup_location) ?>
         type="submit"
         name="Cancel"
         value="<?= esc($order->id) ?>"
-        class="bg-white-600 hover:bg-white-700 px-3 py-1 rounded-md text-black cursor-pointer border border-gray-400">
+        class="px-3 py-1 border rounded cursor-pointer color-soft-white text-black hover-secondary">
 
         Cancel
 
@@ -160,7 +160,7 @@ No orders available
 
 <!-- PAGINATION -->
 
-<div class="p-4 border-t bg-white">
+<div class="p-4 border-t color-base-dark text-color-soft-white">
 
 <div class="flex justify-between items-center">
 

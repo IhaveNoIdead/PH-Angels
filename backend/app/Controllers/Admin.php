@@ -11,6 +11,13 @@ class Admin extends BaseController
 {
     public function dashboard()
     {
+        $session = session();
+        
+        if (!$session->has('user') || $session->get('user')['type'] !== 'admin') 
+        {
+            return redirect()->to('/');
+        }
+
         $usersModel = new UsersModel();
         $ordersModel = new OrdersModel();
         
@@ -25,6 +32,12 @@ class Admin extends BaseController
 
     public function accountsPage()
     {
+        $session = session();
+
+        if (!$session->has('user') || $session->get('user')['type'] !== 'admin') 
+        {
+            return redirect()->to('/');
+        }
         $usersModel = new UsersModel();
 
         $data['users'] = $usersModel->findAll();
@@ -41,7 +54,12 @@ class Admin extends BaseController
         $complete = $request->getPost('Complete');
         $cancel = $request->getPost('Cancel');
 
-         if ($complete) 
+        if (!$session->has('user') || $session->get('user')['type'] !== 'admin') 
+        {
+            return redirect()->to('/');
+        }
+
+        if ($complete) 
         {
             $order = $ordersModel->find($complete);
 
@@ -79,7 +97,8 @@ class Admin extends BaseController
         $session = session();
         $productsModel = new ProductsModel();
 
-        if (!$session->has('user') || $session->get('user')['type'] !== 'admin') {
+        if (!$session->has('user') || $session->get('user')['type'] !== 'admin') 
+        {
             return redirect()->to('/');
         }
 

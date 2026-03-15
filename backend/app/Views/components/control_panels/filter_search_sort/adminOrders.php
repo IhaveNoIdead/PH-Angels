@@ -9,7 +9,7 @@ type="search"
 id="orders_query"
 placeholder="Search by Order ID, User ID, or Status"
 class="shadow-sm px-3 py-2 border rounded-md
-color-soft-white
+text-color-soft-white color-light-dark
 w-full sm:w-1/3
 focus:outline-none">
 
@@ -17,7 +17,7 @@ focus:outline-none">
 <select
 id="orders_sort"
 class="shadow-sm px-3 py-2 border rounded-md
-color-soft-white
+text-color-soft-white color-light-dark
 w-full sm:w-48 cursor-pointer
 focus:outline-none">
 
@@ -33,7 +33,7 @@ focus:outline-none">
 <select
 id="orders_status"
 class="shadow-sm px-3 py-2 border rounded-md
-color-soft-white
+text-color-soft-white color-light-dark
 w-full sm:w-48 cursor-pointer
 focus:outline-none">
 
@@ -53,8 +53,8 @@ id="ordersResetBtn"
 class="px-4 py-2 rounded-md
 color-light-dark
 text-color-soft-white
-hover-primary
-cursor-pointer shadow-sm">
+hover-secondary 
+text-color-soft-white cursor-pointer shadow-sm">
 
 Reset
 

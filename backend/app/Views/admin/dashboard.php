@@ -4,7 +4,7 @@
     'title' => 'Philippines Angels'
 ]) ?>
 
-<body class="min-h-screen flex flex-col color-soft-white text-black">
+<body class="min-h-screen flex flex-col color-base-dark">
 
 <!-- NavBar -->
 <?= view('components/header') ?>
